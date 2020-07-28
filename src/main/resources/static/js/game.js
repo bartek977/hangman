@@ -1,17 +1,16 @@
-var ALPHABET = "AĄBCĆDEĘFGHIJKLŁMNŃOÓPQRSŚTUVWXYZŻŹ";
-var password = "test";
-password = password.toUpperCase();
-var passwordLength = password.length;
-var passwordGame = "";
+const ALPHABET = "AĄBCĆDEĘFGHIJKLŁMNŃOÓPQRSŚTUVWXYZŻŹ";
+const API_URL = 'http://localhost:8081/api';
+const PASSWORD_API_URL = `${API_URL}/passwords`;
+
+var password="";
+var passwordGame="";
+var passwordLength;
 var counter = 0;
 
-for(i=0; i<passwordLength; i++) {
-    if(password.charAt(i)==' ') {
-        passwordGame += " ";
-    }
-    else {
-        passwordGame += "-";
-    }
+function getPassword() {
+    const response = fetch(PASSWORD_API_URL)
+                           .then(res => res.json())
+                           .then(data => password = data.password);
 }
 
 function write_password() {
@@ -20,7 +19,21 @@ function write_password() {
 
 window.onload = start;
 
-function start() {
+async function start() {
+
+    await getPassword();
+    console.log(passwordGame);
+    passwordLength = password.length;
+
+    for(i=0; i<passwordLength; i++) {
+        if(password.charAt(i)==' ') {
+            passwordGame += " ";
+        }
+        else {
+            passwordGame += "-";
+        }
+    }
+    console.log(passwordGame);
 
     var letters = "";
 
