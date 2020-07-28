@@ -1,5 +1,6 @@
 package traning.hangman.Password;
 
+import org.springframework.aop.scope.ScopedProxyUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,7 +14,8 @@ class PasswordService {
     }
 
     Password getRandomPassword() {
-        List<Password> passwords = repository.findAll();
+        List<Password> passwords = repository.findPasswordsNotPlayedByUser(1);
+        System.out.println(passwords);
 
         int randomNumber = (int)(Math.random()*passwords.size());
 
