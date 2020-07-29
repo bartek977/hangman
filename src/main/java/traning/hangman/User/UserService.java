@@ -15,7 +15,7 @@ public class UserService {
     }
 
     public List<User> getUserByPointsAsc() {
-        return null;
+        return userRepository.findTop5ByOrderByPointsDesc();
     }
 
     public boolean isRegisted(String name, String password) {

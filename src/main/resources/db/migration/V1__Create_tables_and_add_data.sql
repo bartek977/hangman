@@ -12,9 +12,9 @@ create table users (
 
 INSERT INTO `users`
 VALUES
-(1,'admin','admin123',1),
+(1,'admin','admin123',10),
 (2,'bart','admin123',1),
-(3,'user','admin123',1);
+(3,'user','admin123',5);
 
 
 DROP TABLE IF EXISTS passwords;

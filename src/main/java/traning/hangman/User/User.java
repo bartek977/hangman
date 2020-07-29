@@ -20,13 +20,14 @@ public class User {
     private String password;
     private Integer points;
 
-    @ManyToMany(fetch= FetchType.LAZY,
-            cascade= {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinTable(
-            name="games",
-            joinColumns=@JoinColumn(name="user_id"),
-            inverseJoinColumns=@JoinColumn(name="password_id")
-    )
-    private List<Password> playedPasswords;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", points=" + points +
+                '}';
+    }
 }

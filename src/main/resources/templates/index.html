@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="utf-8" />
+    <title>Hangman</title>
+
+    <link rel="stylesheet" href="css/home_style.css" type="text/css" />
+    <script src="js/top-player.js"></script>
+</head>
+
+<body>
+
+<div id="container">
+    <div id="menu-bar">
+        <div style="float:left;"><img src="img/9.jpg" width="150" height="100" /></div>
+        Witaj w grze!
+    </div>
+    <div id="login-form">Logowanie
+        <form method="post" action="/game">
+            Login: <input name="username" /> <br />
+            Hasło: <input type="password" name="password" /> <br />
+            <input type="submit" value="Zaloguj!">
+        </form>
+    </div>
+    <div id="top-players">Ranking
+        <table id="top-table">
+            <colgroup>
+                <col span="1" style="width: 15%;">
+                <col span="1" style="width: 70%;">
+                <col span="1" style="width: 15%;">
+            </colgroup>
+            <tr>
+                <th>Lp</th>
+                <th>Nick</th>
+                <th>Pkt</th>
+            </tr>
+        </table>
+    </div>
+    <div style="clear:both;"></div>
+    <div id="bottom-bar">
+            Bartłomiej Turkosz<br />
+            GitHub: <a href="https://github.com/bartek977" target="_blank">bartek977</a>
+    </div>
+</div>
+</body>
+</html>
