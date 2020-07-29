@@ -29,7 +29,6 @@ body
 	float: left;
 	margin-top: 50px;
 	width: 450px;
-	text-align: center;
 	min-height: 280px;
 }
 
@@ -42,18 +41,18 @@ body
 	min-height: 280px;
 }
 
-table {
+#top-table {
   border-collapse: collapse;
   width: 100%;
 }
 
-td, th {
+#top-table td, th {
   border: 1px solid lightgray;
   text-align: left;
   padding: 8px;
 }
 
-tr:nth-child(even) {
+#top-table tr:nth-child(even) {
   background-color: #111111;
 }
 
@@ -64,4 +63,47 @@ tr:nth-child(even) {
 	width: 900px;
 	font-size: 16px;
 	min-height: 50px;
+}
+
+#topnav
+{
+	text-align: center;
+}
+
+.menu
+{
+	list-style-type: none;
+	margin: 0;
+	padding: 10px;
+	font-size: 18px;
+	min-height: 38px;
+	line-height: 200%;
+}
+
+.menu > li
+{
+	display: inline-block;
+	padding-left: 20px;
+	padding-right: 20px;
+	border-right: 1px dashed #111111;
+}
+
+.menu > li:first-child
+{
+	border-left: 1px dashed #111111;
+}
+
+.menu a
+{
+	color: #fff;
+	text-decoration: none;
+}
+
+.menu a:hover
+{
+	color: #333333;
+}
+
+#table-form {
+
 }

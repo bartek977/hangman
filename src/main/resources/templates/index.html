@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="css/home_style.css" type="text/css" />
     <script src="js/top-player.js"></script>
+    <script src="js/home.js"></script>
 </head>
 
 <body>
@@ -17,11 +18,30 @@
         <div style="float:left;"><img src="img/9.jpg" width="150" height="100" /></div>
         Witaj w grze!
     </div>
-    <div id="login-form">Logowanie
-        <form method="post" action="/game">
-            Login: <input name="username" /> <br />
-            Hasło: <input type="password" name="password" /> <br />
-            <input type="submit" value="Zaloguj!">
+    <nav id="topnav">
+
+        <ul class="menu">
+            <li><a href="#">Strona główna</a></li>
+            <li><a id="link-change-form" href="#" onclick="change_form(0);return false;">Rejestracja</a></li>
+            <li><a href="#">Dodaj hasło</a></li>
+            <li><a href="#">O autorze</a></li>
+            <li><a href="#">Kontakt</a></li>
+        </ul>
+
+    </nav>
+    <div id="login-form">
+        <form method="post" action="/game" onsubmit="validateForm(1)">
+        <table id="table-form"><tr>Logowanie</tr>
+            <tr>
+                <td>Login:</td>
+                <td><input name="username" required /></td>
+            </tr>
+            <tr>
+                <td>Hasło:</td>
+                <td><input type="password" name="password" required /></td>
+                <td><input type="submit" value="Zaloguj!"></td>
+            </tr>
+        </table>
         </form>
     </div>
     <div id="top-players">Ranking

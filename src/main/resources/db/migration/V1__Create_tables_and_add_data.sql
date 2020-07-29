@@ -14,7 +14,11 @@ INSERT INTO `users`
 VALUES
 (1,'admin','admin123',10),
 (2,'bart','admin123',1),
-(3,'user','admin123',5);
+(3,'testt','admin123',10),
+(4,'top-player','admin123',2555),
+(5,'hangmannn','admin123',10),
+(6,'<a href="google.pl">kliknij</a>','admin123',50),
+(7,'user','admin123',5);
 
 
 DROP TABLE IF EXISTS passwords;
