@@ -13,4 +13,6 @@ public interface UserRepository extends JpaRepository<User,Integer> {
 
     //top 5 players
     List<User> findTop5ByOrderByPointsDesc();
+
+    User findUserByUsername(String username);
 }

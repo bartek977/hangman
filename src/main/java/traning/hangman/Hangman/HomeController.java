@@ -25,9 +25,7 @@ public class HomeController {
     @PostMapping("/game")
     public String login(@RequestParam String username, @RequestParam String password) {
 
-        System.out.println("jestem");
         if(userService.isRegisted(username,password)) {
-            System.out.println("powinno zalogowac");
             return "game.html";
         }
         else
@@ -40,5 +38,20 @@ public class HomeController {
         System.out.println("pobieram top players");
         System.out.println(userService.getUserByPointsAsc());
         return userService.getUserByPointsAsc();
+    }
+
+    @PostMapping("/register")
+    public String register(@RequestParam String username, @RequestParam String password) {
+        User user;
+        if(userService.isUserExist(username)) {
+            return "index.html";
+        }
+        else
+            user = new User();
+            user.setUsername(username);
+            user.setPassword(password);
+            user.setPoints(0);
+            userService.save(user);
+            return "game.html";
     }
 }

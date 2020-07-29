@@ -31,4 +31,12 @@ public class UserService {
             return false;
         }
     }
+
+    public boolean isUserExist(String username) {
+        return userRepository.findUserByUsername(username) != null;
+    }
+
+    public void save(User user) {
+        userRepository.save(user);
+    }
 }
