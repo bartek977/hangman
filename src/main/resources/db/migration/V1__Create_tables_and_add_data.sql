@@ -40,7 +40,7 @@ create table games (
     user_id int unsigned NOT NULL,
     password_id int unsigned NOT NULL,
 
-    PRIMARY KEY (user_id,password_id),
+    --PRIMARY KEY (user_id,password_id),
 
     CONSTRAINT FK_USER_ID FOREIGN KEY (user_id)
     REFERENCES users (id)
@@ -54,6 +54,14 @@ create table games (
 INSERT INTO games
 VALUES
 (1,1),
+(8,1),
+(8,2),
+(8,3),
+(8,4),
+(8,5),
+(8,6),
+(8,7),
+(8,8),
 (1,4);
 
 

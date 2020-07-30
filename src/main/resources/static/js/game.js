@@ -31,6 +31,12 @@ window.onload = start;
 async function start() {
 
     await getPassword();
+    if(password == null) {
+        passwordGame = "BRAK DOSTĘPNYCH HASEŁ";
+        write_password();
+        document.getElementById("game").innerHTML = '<img src="img/9.jpg" />'
+        return true;
+    }
     password = password.toUpperCase();
     passwordLength = password.length;
 

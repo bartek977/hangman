@@ -4,9 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.ReactiveUserDetailsPasswordService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import traning.hangman.password.Password;
 import traning.hangman.password.PasswordService;
+import traning.hangman.user.CrmUser;
 import traning.hangman.user.User;
 import traning.hangman.user.UserService;
 
@@ -47,6 +50,19 @@ public class HomeController {
         return userService.getUserByPointsAsc();
     }
 
+    @GetMapping("/add-password-form")
+    public String addPasswordForm() {
+        return "add-password-form";
+    }
+
+    @PostMapping("/add-password-form")
+    public String addPasswordForm(@RequestParam("password") String password) {
+        Password thePassword = new Password();
+        thePassword.setPassword(password);
+        passwordService.save(thePassword);
+        return "add-password-form-accepted";
+    }
+
     @GetMapping("api/games")
     @ResponseStatus(value = HttpStatus.OK)
     public void addPoints(@RequestParam("passwordId") Integer passwordId) {
@@ -56,7 +72,8 @@ public class HomeController {
         User user = null;
 
         try {
-            user = (User)session.getAttribute("user");
+            User temp = (User)session.getAttribute("user");
+            user = userService.findByUsername(temp.getUsername());
         } catch (Exception ex) {
             System.out.println("function addPoints()");
         }
@@ -74,11 +91,11 @@ public class HomeController {
                 if(password.isPresent()) {
                     if(user.getGames() == null
                             ||user.getGames().isEmpty()
-                            ||user.getGames().get(user.getGames().size()-1).getId()!=password.get().getId()) {
+                            ||!user.getGames().contains(password.get())) {
 
                         //patrz -->UserRepository::addPasswordGameToUser()
-                        //user.addGame(password.get());
-                        userService.addPasswordGameToUser(user.getId(), passwordId);
+                        user.addGame(password.get());
+                        //userService.addPasswordGameToUser(user.getId(), passwordId);
                         user.setPoints(user.getPoints()+1);
                         System.out.println("\n\n\nprzed savem");
                         System.out.println(user.getGames());

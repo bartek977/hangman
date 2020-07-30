@@ -29,4 +29,8 @@ public class PasswordService {
     public Optional<Password> findById(Integer id) {
         return repository.findById(id);
     }
+
+    public void save(Password password) {
+        repository.save(password);
+    }
 }

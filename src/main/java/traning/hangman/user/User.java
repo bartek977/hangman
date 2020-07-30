@@ -8,9 +8,7 @@ import traning.hangman.password.Password;
 import traning.hangman.role.Role;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 @Data
 @Entity
@@ -29,7 +27,7 @@ public class User {
     @JoinTable(name = "games",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "password_id"))
-    private List<Password> games;
+    private Set<Password> games;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "users_roles",
@@ -39,9 +37,10 @@ public class User {
     private List<Role> roles;
 
 
+
     public void addGame(Password password) {
         if(games==null) {
-            games = new ArrayList<>();
+            games = new HashSet<>();
         }
         games.add(password);
     }

@@ -56,16 +56,16 @@ public class RegistrationController {
         User existing = userService.findByUsername(userName);
         if (existing != null){
         	theModel.addAttribute("crmUser", new CrmUser());
-			theModel.addAttribute("registrationError", "User name already exists.");
+			theModel.addAttribute("registrationError", "Login jest zajęty");
 
-			logger.warning("User name already exists.");
+			logger.warning("Login jest zajęty");
         	return "registration-form";
         }
         
         // create user account        						
         userService.save(theCrmUser);
         
-        logger.info("Successfully created user: " + userName);
+        logger.info("Utworzono user'a: " + userName);
         
         return "registration-confirmation";
 	}

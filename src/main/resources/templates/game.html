@@ -5,17 +5,34 @@
     <title>Hangman</title>
 
     <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link rel="stylesheet" href="css/home_style.css" type="text/css" />
+    <link href='https://fonts.googleapis.com/css?family=Inconsolata:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <script src="js/game.js"></script>
 </head>
 
 <body>
 
     <div id="container">
-        <div id="password">password</div>
-        <div id="game">
-            <img src="img/1.jpg" />
+        <div id="menu-bar">
+            <div style="float:left;"><img src="img/9.jpg" width="150" height="100" /></div>
+            Witaj w grze!
         </div>
-        <div id="alphabet">alfabet</div>
+        <nav id="topnav">
+
+            <ul class="menu">
+                <li><a href="/">Strona główna</a></li>
+                <li><a href="/add-password-form">Dodaj hasło</a></li>
+                <li><a href="#">O autorze</a></li>
+                <li><a href="#">Kontakt</a></li>
+                <li><a href="/login?logout">Wyloguj</a></li>
+            </ul>
+
+        </nav>
+        <div id="password"></div>
+        <div id="game">
+            <img src="img/0.jpg" />
+        </div>
+        <div id="alphabet"></div>
         <div style="clear:both;"></div>
     </div>
 
