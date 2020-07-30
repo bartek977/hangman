@@ -5,20 +5,19 @@ DROP TABLE IF EXISTS users;
 create table users (
     id int unsigned primary key auto_increment,
     username varchar(100) not null unique,
-    password varchar(50) NOT NULL,
+    password varchar(60) NOT NULL,
     points int(11) NOT NULL,
     PRIMARY KEY (id)
 );
 
 INSERT INTO `users`
 VALUES
-(1,'admin','admin123',10),
-(2,'bart','admin123',1),
-(3,'testt','admin123',10),
-(4,'top-player','admin123',2555),
-(5,'hangmannn','admin123',10),
-(6,'<a href="google.pl">kliknij</a>','admin123',50),
-(7,'user','admin123',5);
+(1,'admin','$2a$10$HBrgMr6TJbfNPU7LfFoUq.THIsqv21lHOIlgXU9FtPSTi5Cu5AZB.',10),
+(2,'bart','$2a$10$HBrgMr6TJbfNPU7LfFoUq.THIsqv21lHOIlgXU9FtPSTi5Cu5AZB.',1),
+(3,'testt','$2a$10$HBrgMr6TJbfNPU7LfFoUq.THIsqv21lHOIlgXU9FtPSTi5Cu5AZB.',10),
+(4,'top-player','$2a$10$HBrgMr6TJbfNPU7LfFoUq.THIsqv21lHOIlgXU9FtPSTi5Cu5AZB.',2555),
+(5,'hangmannn','$2a$10$HBrgMr6TJbfNPU7LfFoUq.THIsqv21lHOIlgXU9FtPSTi5Cu5AZB.',10),
+(7,'user','$2a$10$HBrgMr6TJbfNPU7LfFoUq.THIsqv21lHOIlgXU9FtPSTi5Cu5AZB.',5);
 
 
 DROP TABLE IF EXISTS passwords;
@@ -57,4 +56,44 @@ VALUES
 (1,1),
 (1,4);
 
+
+
+DROP TABLE IF EXISTS role;
+
+CREATE TABLE roles (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  name varchar(50) DEFAULT NULL,
+  PRIMARY KEY (id)
+);
+
+INSERT INTO roles (name)
+VALUES
+('ROLE_USER'),('ROLE_ADMIN');
+
+
+DROP TABLE IF EXISTS users_roles;
+
+CREATE TABLE users_roles (
+  user_id int(11) NOT NULL,
+  role_id int(11) NOT NULL,
+
+  PRIMARY KEY (user_id,role_id),
+
+  CONSTRAINT FK_USER_05 FOREIGN KEY (user_id)
+  REFERENCES users (id)
+  ON DELETE NO ACTION ON UPDATE NO ACTION,
+
+  CONSTRAINT FK_ROLE FOREIGN KEY (role_id)
+  REFERENCES roles (id)
+  ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+
 SET FOREIGN_KEY_CHECKS = 1;
+
+INSERT INTO users_roles (user_id,role_id)
+VALUES
+(1, 1),
+(2, 1),
+(2, 2),
+(3, 1),
+(3, 2);

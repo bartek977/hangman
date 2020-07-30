@@ -22,24 +22,14 @@
 
         <ul class="menu">
             <li><a href="#">Strona główna</a></li>
-            <li><a href="/game">Graj</a></li>
-            <li><a href="#">Dodaj hasło</a></li>
+            <li><a th:href="@{/register}">Rejestracja</a></li>
             <li><a href="#">O autorze</a></li>
             <li><a href="#">Kontakt</a></li>
         </ul>
 
     </nav>
     <div id="login-form">
-        Witaj userze!<br />
-
-        User: <span sec:authentication="name"></span>
-        <br><br>
-        Role(s): <span sec:authentication="principal.authorities"></span>
-        <br><br>
-
-        <div th:if="${session.user}" >
-            <p th:text="'First name: ' + ${session.user.username} + ', Punkty: ' + ${session.user.points}"></p>
-        </div>
+        Pomyślnie zarejestrowano! <a href="/">Zaloguj się!</a>
     </div>
     <div id="top-players">Ranking
         <table id="top-table">

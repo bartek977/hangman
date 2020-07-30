@@ -21,8 +21,8 @@
     <nav id="topnav">
 
         <ul class="menu">
-            <li><a href="#">Strona główna</a></li>
-            <li><a href="/game">Graj</a></li>
+            <li><a href="/">Strona główna</a></li>
+            <li><a th:href="@{/register}">Rejestracja</a></li>
             <li><a href="#">Dodaj hasło</a></li>
             <li><a href="#">O autorze</a></li>
             <li><a href="#">Kontakt</a></li>
@@ -30,16 +30,28 @@
 
     </nav>
     <div id="login-form">
-        Witaj userze!<br />
-
-        User: <span sec:authentication="name"></span>
-        <br><br>
-        Role(s): <span sec:authentication="principal.authorities"></span>
-        <br><br>
-
-        <div th:if="${session.user}" >
-            <p th:text="'First name: ' + ${session.user.username} + ', Punkty: ' + ${session.user.points}"></p>
+        <div th:if="${param.logout}"class="alert alert-success col-xs-offset-1 col-xs-10">
+            You have been logged out.
         </div>
+        <form th:action="@{/register}"
+              th:object="${crmUser}" method="POST">
+        <table id="table-form"><tr>Rejestracja</tr>
+            <tr>
+                <div th:if="${registrationError}">
+                    <span th:text="${registrationError}"></span>
+                </div>
+            </tr>
+            <tr>
+                <td>Login:</td>
+                <td><input type="text" th:field="*{userName}" placeholder="username (*)" required /></td>
+            </tr>
+            <tr>
+                <td>Hasło:</td>
+                <td><input type="password" th:field="*{password}" placeholder="password (*)" required/></td>
+                <td><input type="submit" value="Zarejestruj!"></td>
+            </tr>
+        </table>
+        </form>
     </div>
     <div id="top-players">Ranking
         <table id="top-table">

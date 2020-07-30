@@ -1,8 +1,10 @@
 const ALPHABET = "AĄBCĆDEĘFGHIJKLŁMNŃOÓPQRSŚTUVWXYZŻŹ";
 const API_URL = 'http://localhost:8081/api';
 const PASSWORD_API_URL = `${API_URL}/passwords`;
+const GAME_API_URL = `${API_URL}/games`;
 
 var password;
+var passwordId;
 var passwordGame="";
 var passwordLength;
 var counter = 0;
@@ -10,7 +12,14 @@ var counter = 0;
 async function getPassword() {
     const response = await fetch(PASSWORD_API_URL)
                            .then(res => res.json())
-                           .then(data => password = data.password);
+                           .then(data => {
+                           password = data.password;
+                           passwordId = data.id;
+                           });
+}
+
+async function addPoints() {
+    const response = await fetch(`${GAME_API_URL}?passwordId=${passwordId}`);
 }
 
 function write_password() {
@@ -88,5 +97,7 @@ function check(nr) {
         document.getElementById("alphabet").innerHTML  = "Przegrana! Prawidłowe hasło: "+password+'<br /><br /><span class="reset" onclick="location.reload()">JESZCZE RAZ?</span>';
     }
     if(passwordGame == password) {
-        document.getElementById("alphabet").innerHTML  = "Tak jest! Podano prawidłowe hasło: "+password+'<br /><br /><span class="reset" onclick="location.reload()">JESZCZE RAZ?</span>';    }
+        document.getElementById("alphabet").innerHTML  = "Tak jest! Podano prawidłowe hasło: "+password+'<br /><br /><span class="reset" onclick="location.reload()">JESZCZE RAZ?</span>';
+        addPoints();
+        }
 }

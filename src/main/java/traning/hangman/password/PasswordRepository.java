@@ -1,9 +1,8 @@
-package traning.hangman.Password;
+package traning.hangman.password;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import traning.hangman.User.User;
 
 import java.util.List;
 

@@ -1,33 +1,32 @@
-package traning.hangman.User;
+package traning.hangman.password;
 
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
-import traning.hangman.Password.Password;
+import traning.hangman.user.User;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Data
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "passwords")
+public class Password {
 
     @Id
     @GeneratedValue(generator = "inc")
     @GenericGenerator(name = "inc", strategy = "increment")
     private Integer id;
-    private String username;
     private String password;
-    private Integer points;
 
+
+    public Password() {
+    }
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Password{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", points=" + points +
                 '}';
     }
 }
